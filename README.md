@@ -14,11 +14,11 @@ The class-oriented server approach for greater scalability. And React App is mod
 
 ### Server
 2.  Run the ```npm install``` command
-3.  Lounh the bandname-server with the command ```npm run dev```
+3.  (If you don't have nodemon installed, Run the ```npm install nodemon -g```). After, start the  project called "bandname-server" with the command ```npm run dev```
 
 ### Client
 4. Run the ```npm install``` command 
-5. Lounh the bandnames proyect with the command ```npm start```
+5. Start the project called "bandnames"  with the command ```npm start```
 <hr />
 
 ## Thank you for reading!
