@@ -14,16 +14,16 @@ function HomePage() {
     <div className='container'>
       <div className='alert'>
         <p>
-          Service Status: 
+          Status: 
           {
             online 
-            ? <span className='text-success mx-2'>Online</span>
-            : <span className='text-danger mx-2'>Offline</span>
+            ? <span className='text-success mx-2 d-inline-flex align-items-center gap-1'>Online <div style={{width: '10px', height:'10px', borderRadius: '50%', backgroundColor: 'green'}}></div></span>
+            : <span className='text-danger mx-2 d-inline-flex align-items-center gap-1'>Offline <div style={{width: '10px', height:'10px', borderRadius: '50%', backgroundColor: 'red'}}></div></span>
           }
         </p>
       </div>
 
-      <h1>BandNames</h1>
+      <h1>The Best Bands</h1>
       <hr />
 
       <div className="row">

@@ -34,7 +34,7 @@ export const BandChart = () => {
       data: {
         labels: bands.map(band => band.name),
         datasets: [{
-          label: '# of Votes',
+          label: '# de Votos',
           data: bands.map(band => band.votes),
           backgroundColor:[
             'rgba(255, 99, 132, 0.2)',
