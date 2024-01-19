@@ -1,4 +1,6 @@
-# Band Chart (Sockets.io + React)
+# Band Chart (Sockets.io + React) 
+[![Socket.io](https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=socketdotio&logoColor=white&labelColor=101010)]()
+[![React](https://img.shields.io/badge/-React.Js-61DAFB?logo=react&logoColor=white&style=for-the-badge&labelColor=101010)]()
 
 ## Real-time application where you can vote and add your favorites bands
 
