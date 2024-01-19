@@ -1,16 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import SocketContext from '../context/SocketContext'
 
-export const BandList = ({ data, vote, deleteBand, changeName: changeBandName }) => {
-  const [ bands, setBands ] = useState(data)
+export const BandList = () => {
+  const [bands, setBands] = useState([])
+  const { socket } = useContext(SocketContext)
 
   useEffect(() => {
-    setBands(data)
-  }, [data])
+    socket.on('current-bands', (bands) => {
+      setBands(bands)
+    })
+
+    return () => socket.off('current-bands')
+
+  }, [ socket ])
+
+
 
   const changeName = (e, id) => {
     const newName = e.target.value
 
-    setBands( bands => bands.map( band => {
+    setBands(bands => bands.map(band => {
       if (band.id === id) {
         band.name = newName
       }
@@ -19,46 +28,54 @@ export const BandList = ({ data, vote, deleteBand, changeName: changeBandName })
   }
 
   const onLostFocus = (id, name) => {
-    console.log(id, name);
+    socket.emit('change-name-band', { id, name })
+  }
 
-    changeBandName(id, name)
+  // Votar  
+  const vote = (id) => {
+    socket.emit('vote-band', id)
+  }
+
+  // Borrar banda
+  const deleteBand = (id) => {
+    socket.emit('delete-band', id)
   }
 
   const createRows = () => {
     return (
-        bands.map( (band ) => (
-          <tr key={ band.id }>
-            <td>
-              <button 
-                className='btn btn-primary'
-                onClick={ () => vote( band.id ) }  
-              > +1 </button>
-            </td>
-            <td>
-              <input 
-                className='form-control' 
-                value={ band.name }
-                onChange={ (e) => changeName(e, band.id)} 
-                onBlur={ () => onLostFocus(band.id, band.name) } />
-            </td>
-            <td> 
-              <h3> { band.votes } </h3> 
-            </td>
-            <td>
-              <button 
-                className='btn btn-danger'
-                onClick={ () => deleteBand( band.id ) }  
-              > Borrar </button> 
-            </td>
-          </tr>
+      bands.map((band) => (
+        <tr key={band.id}>
+          <td>
+            <button
+              className='btn btn-primary'
+              onClick={() => vote(band.id)}
+            > +1 </button>
+          </td>
+          <td>
+            <input
+              className='form-control'
+              value={band.name}
+              onChange={(e) => changeName(e, band.id)}
+              onBlur={() => onLostFocus(band.id, band.name)} />
+          </td>
+          <td>
+            <h3> {band.votes} </h3>
+          </td>
+          <td>
+            <button
+              className='btn btn-danger'
+              onClick={() => deleteBand(band.id)}
+            > Borrar </button>
+          </td>
+        </tr>
 
-        ))
+      ))
     )
   }
 
   return (
     <>
-      
+
       <table className='table table-striped'>
         <thead>
           <tr>
@@ -69,7 +86,7 @@ export const BandList = ({ data, vote, deleteBand, changeName: changeBandName })
           </tr>
         </thead>
         <tbody>
-          { createRows() }
+          {createRows()}
         </tbody>
       </table>
 
