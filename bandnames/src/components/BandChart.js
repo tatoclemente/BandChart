@@ -68,6 +68,8 @@ export const BandChart = () => {
 
   }
   return (
-    <canvas id="myChart"></canvas>
+    <div className='w-75'>
+      <canvas id="myChart"></canvas>
+    </div>
   )
 }
