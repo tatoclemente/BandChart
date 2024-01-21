@@ -13,7 +13,7 @@ The class-oriented server approach for greater scalability. And React App is mod
 1.  Clone this repository in your local environment
 
 ### Server
-2.  Run the ```npm install``` commandç
+2.  Run the ```npm install``` command
 3.  Copy the file **_.env.template_** and rename it to **_.env_**
 3.  (_If you don't have nodemon installed, Run the_ ```npm install nodemon -g```). 
 * After, start the  project called "bandname-server" with the command ```npm run dev```
